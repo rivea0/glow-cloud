@@ -1,6 +1,5 @@
 import CurrentWeather from '@components/current-weather'
 import Hourly from './components/hourly'
-import RateAndRant from './components/rate-and-rant'
 import Note from './components/note'
 import SunDisplay from './components/sun-display'
 
@@ -39,7 +38,6 @@ export default async function Page() {
     <>
       <main>
         <CurrentWeather weatherData={current_weather} city={city} countryName={country_name} />
-        {/* <RateAndRant /> */}
         <Hourly hourlyData={hourly} currentHour={currentHour} />
         <SunDisplay date={date} sunrise={sunriseHour} sunset={sunsetHour} />
         <Note weathercode={current_weather.weathercode}/>
