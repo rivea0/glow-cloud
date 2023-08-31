@@ -1,0 +1,27 @@
+.current {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 25px 450px;
+}
+
+.miscItem {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  flex: 1; 
+  padding: 18px;
+  margin: 18px 6px;
+  color: var(--gray);
+  text-align: center;  
+}
+
+
+@media (orientation: portrait) {
+  .current, .miscItem {
+    padding: 0;
+  }
+}
+

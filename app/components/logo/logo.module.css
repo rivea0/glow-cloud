@@ -1,0 +1,10 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+  color: var(--purple-secondary); 
+  background-image: -webkit-linear-gradient(45deg, var(--purple-secondary) 25%, var(--purple) 85%); 
+  background-clip: text; 
+  -webkit-background-clip: text; 
+  text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,38 @@
+.hourly {
+  text-align: center; 
+  padding: 25px 450px;
+  margin-top: 8px;
+
+}
+
+.miscItem {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  flex: 1; 
+  padding: 18px;
+  margin: 18px 0;
+}
+
+.hourlyBox {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 12px 0;
+
+}
+
+.hourlyTitle {
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 0.25rem var(--gray));
+}
+
+@media (orientation: portrait) {
+  .hourly, .miscItem {
+    padding: 0;
+  }
+}
