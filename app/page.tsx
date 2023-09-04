@@ -4,7 +4,7 @@ import Note from './components/note'
 import SunDisplay from './components/sun-display'
 
 async function getLocationData() {
-  const res = await fetch('https://ipapi.co/json/')
+  const res = await fetch('https://ipapi.co/json/', {next: { revalidate: 3600 }})
  
   if (!res.ok) {
     throw new Error('Failed to get location data')
@@ -45,5 +45,3 @@ export default async function Page() {
     </>
   )
 }
-
-
