@@ -1,0 +1,11 @@
+.menu {
+  display: inline;
+  margin-left: 8px;
+}
+
+.menuButton {
+  max-width: 100px;
+  border: none;
+  background-color: var(--bg);
+  cursor: pointer;
+}
