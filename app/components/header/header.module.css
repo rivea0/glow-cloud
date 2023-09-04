@@ -1,6 +1,6 @@
 .header a {
   text-decoration: none;
-  font-weight: 700;
+  font-size: 1rem;
 }
 
 .about {
@@ -10,25 +10,20 @@
   -webkit-background-clip: text; 
   text-fill-color: transparent; 
   -webkit-text-fill-color: transparent;
+}
 
+.aboutText{
+  max-width: 100px;
 }
 
 .header {
   display: flex;
-  padding: 5px 8px;
+  padding: 5px 12px;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
 .right {
-  display: flex;
-  gap: 1rem;
-}
-
-@media (orientation: portrait) {
-  .right {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0;
-  }
+  text-align: end;
+  gap: 8px;
 }
