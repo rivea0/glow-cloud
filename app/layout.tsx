@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-      <ThemeProvider>
+        <ThemeProvider>
           <Header />
           {children}
           <Footer />
