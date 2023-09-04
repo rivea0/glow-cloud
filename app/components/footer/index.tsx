@@ -6,8 +6,8 @@ import { Mail, GitHub, Link } from '@components/icons'
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div>
-        <FooterIcon href="https://github.com/rivea0" icon={<GitHub strokeWidth={2} color={'var(--fg)'} />} />
+      <div data-testid="icons">
+        <FooterIcon href="https://github.com/rivea0" icon={<GitHub strokeWidth={2} />} />
         <FooterIcon href="https://rivea0.github.io" icon={<Link strokeWidth={2} />} />
         <FooterIcon href="mailto:riveazero@gmail.com" icon={<Mail strokeWidth={2} />} />
       </div>

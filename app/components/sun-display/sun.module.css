@@ -1,4 +1,31 @@
+.header {
+  margin-top: 2rem;
+}
+
+.date {
+  font-style: italic;
+}
+
+.sunContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 22rem;
+  gap: 2rem;
+}
+
 .sun {
   color: var(--fg);
   text-align: left;
+}
+
+.time {
+  color: var(--link);
+}
+
+@media (orientation: portrait) {
+  .sunContainer {
+    gap: 0;
+    padding: 0 6rem;
+  }
 }

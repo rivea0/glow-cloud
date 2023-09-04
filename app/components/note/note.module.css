@@ -1,0 +1,18 @@
+.notebox {
+  background-color: var(--currentboxbg);
+  border-radius: 4px;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.title {
+  text-decoration: underline var(--purple-secondary);
+  margin-bottom: 12px;
+}
+
+.inspiration {
+  margin-top: 18px;
+  color: var(--gray);
+  font-style: italic;
+  font-size: smaller;
+}

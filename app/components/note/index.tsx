@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import getParagraph from '@lib/getParagraph';
 import styles from '@components/styles/styles.module.css'
-
+import stylesNote from './note.module.css'
 
 export default function Note({ weathercode }) {
   let key: string
@@ -69,15 +69,18 @@ export default function Note({ weathercode }) {
   
   return (
     <section className={styles.current}>
-      <h3>Note for Today:</h3>
-      {randomWeirdObj &&
-        <div>
-          {randomWeirdObj.paragraphs.map((paragraph: string) => <p key={paragraph}>{paragraph}</p>)}
-          {randomWeirdObj.source &&
-            <p>Source of inspiration: <a href={randomWeirdObj.source.url}>{randomWeirdObj.source.name}</a></p>
-          }      
-        </div>
-      }
+      <div className={stylesNote.notebox}>
+        <h3 className={stylesNote.title}>Note for Today:</h3>
+        {randomWeirdObj &&
+          <div data-testid="note">
+            {randomWeirdObj.paragraphs.map((paragraph: string) => <p key={paragraph}>{paragraph}</p>)}
+            {randomWeirdObj.source &&
+              <p className={stylesNote.inspiration}>Source of inspiration:{' '}
+                <a href={randomWeirdObj.source.url}>{randomWeirdObj.source.name}</a>
+              </p>}
+          </div>
+        }
+      </div>
     </section>
   )
 }

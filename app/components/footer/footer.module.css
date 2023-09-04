@@ -5,8 +5,10 @@
   justify-content: center;
   gap: 8px;
   margin-top: auto;
+  font-size: smaller;
 }
 
 .footer a {
   margin: 0 8px;
+  color: var(--fg);
 }
