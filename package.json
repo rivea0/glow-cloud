@@ -6,7 +6,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -23,8 +23,14 @@
     "react-simple-star-rating": "^5.1.7"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.2",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "^20.5.1",
     "@types/react": "^18.2.20",
-    "typescript": "^5.1.6"
+    "@vitejs/plugin-react": "^4.0.4",
+    "jsdom": "^22.1.0",
+    "typescript": "^5.1.6",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.34.3"
   }
 }
