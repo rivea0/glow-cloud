@@ -1,0 +1,7 @@
+.dropdown {
+  background-color: mediumslategray;
+  border: none;
+  padding: 8px;
+  color: var(--fg);
+  border-radius: 8px;
+}
