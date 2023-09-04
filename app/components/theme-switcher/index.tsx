@@ -3,7 +3,7 @@
 import styles from './theme-switcher.module.css'
 import { Moon, Sun } from '@components/icons'
 import { useTheme } from 'next-themes'
-import { PropsWithChildren, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const ThemeSwitcher = ({
   iconSize = 24,
@@ -19,10 +19,8 @@ const ThemeSwitcher = ({
     setMounted(true)
   }, [])
 
-  const Wrapper = ({ children }: PropsWithChildren) => <>{children}</>
-
   return (
-    <Wrapper>
+    <>
       {mounted && (
           <button
             onClick={() => setTheme(activeTheme === 'light' ? 'dark' : 'light')}
@@ -36,7 +34,7 @@ const ThemeSwitcher = ({
             )}
           </button>
       )}
-    </Wrapper>
+    </>
   )
 }
 
