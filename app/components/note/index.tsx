@@ -68,7 +68,6 @@ export default function Note({ weathercode }) {
   // const randomWeirdObj = useMemo(() => getParagraph(key), [weathercode])
   
   return (
-    <section className={styles.current}>
       <div className={stylesNote.notebox}>
         <h3 className={stylesNote.title}>Note for Today:</h3>
         {randomWeirdObj &&
@@ -81,6 +80,5 @@ export default function Note({ weathercode }) {
           </div>
         }
       </div>
-    </section>
   )
 }
