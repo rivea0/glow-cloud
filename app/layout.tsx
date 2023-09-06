@@ -4,6 +4,7 @@ import Header from '@components/header'
 import Footer from './components/footer'
 import '@styles/global.css'
 import ThemeProvider from '@components/theme-provider'
+import { Analytics } from '@vercel/analytics/react';
 
 const rubik = Rubik({ subsets: ['latin'], weight: '300' })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
