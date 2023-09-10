@@ -1,8 +1,10 @@
+import { headers } from 'next/headers'
+import { Suspense } from 'react'
+import Loading from '@loading'
 import CurrentWeather from '@components/current-weather'
 import Hourly from './components/hourly'
 import Note from './components/note'
 import SunDisplay from './components/sun-display'
-import { headers } from 'next/headers'
 
 async function getLocationData(ip: string) {
   const res = await fetch(`https://ipapi.co/${ip}/json/`, {next: { revalidate: 3600 }})
@@ -39,10 +41,12 @@ export default async function Page() {
   return (
     <>
       <main>
-        <CurrentWeather weatherData={current_weather} city={city} countryName={country_name} />
-        <Hourly hourlyData={hourly} currentHour={currentHour} />
-        <SunDisplay date={date} sunrise={sunriseHour} sunset={sunsetHour} />
-        <Note weathercode={current_weather.weathercode}/>
+        <Suspense fallback={<Loading />}>
+          <CurrentWeather weatherData={current_weather} city={city} countryName={country_name} />
+          <Hourly hourlyData={hourly} currentHour={currentHour} />
+          <SunDisplay date={date} sunrise={sunriseHour} sunset={sunsetHour} />
+          <Note weathercode={current_weather.weathercode}/>
+        </Suspense>
       </main>
     </>
   )
