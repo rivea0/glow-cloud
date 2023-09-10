@@ -5,9 +5,9 @@ export default function Loading() {
   return (
     <div className={styles.loadingContainer}>
       <Image 
-        src='/misc-icons/loading.svg' 
-        alt="loading animated icon" 
-        width={75} 
+        src='/misc-icons/loading.svg'
+        alt="Loading..."
+        width={75}
         height={75}
       >
       </Image>
