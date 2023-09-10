@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GoBackButton from '@components/go-back-button'
 import styles from './about.module.css'
 
 export default function Page() {
@@ -18,9 +19,7 @@ export default function Page() {
           <li>Weather icons are <Link href="https://bas.dev/work/meteocons">Meteocons by bas.dev</Link>.</li>
           <li>Data from <Link href="https://open-meteo.com/en/docs">Open-Meteo</Link>.</li>
         </ul>
-        <div className={styles.back}>
-          <Link href="/">Go back</Link>
-        </div>
+        <GoBackButton />
       </div>
     </div>
   )
