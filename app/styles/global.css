@@ -8,8 +8,6 @@
   --currentboxbg: rgba(255, 255, 255, 0.1);
   --currentboxshadow: 0 0 0 10px #55309a, 0 0 0 20px #3f2473, 0 0 0 30px #2a184c, 0 0 0 40px #150c25, 0 0 0 60px #000;
   --gray: silver;
-  --selection: rgba(255, 255, 255, 0.88);
-  --nav-link: #fff; 
   --bg-image: linear-gradient(-20deg, #000000 0%, #150C25 100%);
 }
 
@@ -17,17 +15,10 @@
 [data-theme='light'] {
   --bg: #fefdff;
   --fg: #06040b;
+  --link: var(--purple);
   --currentboxbg: rgba(0, 0, 0, 0.05);
   --currentboxshadow: 0 0 0 10px #8762ce, 0 0 0 20px #a589da, 0 0 0 30px #c3b0e6, 0 0 0 40px #e0d7f2, 0 0 0 60px #fefdff;
   --gray: gray;
-  --link: var(--purple);
-  --selection: rgba(0, 0, 0, 0.99);
-  --token: #666;
-  --comment: #999;
-  --keyword: #000;
-  --name: #333;
-  --highlight: #eaeaea;
-  --nav-link: black;
   --bg-image: linear-gradient(-20deg, #fcf3cf 0%, #fefdff 100%);
 }
 
