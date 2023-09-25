@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import getParagraph from '@lib/getParagraph';
-import styles from '@components/styles/styles.module.css'
-import stylesNote from './note.module.css'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import getParagraph from '@lib/getParagraph'
+import styles from './note.module.css'
 
 export default function Note({ weathercode }) {
   let key: string
@@ -29,7 +29,7 @@ export default function Note({ weathercode }) {
     },
   } | null
 
-  const [randomWeirdObj, setRandomWeirdObj] = useState<RandomWeirdObjType>(null);
+  const [randomWeirdObj, setRandomWeirdObj] = useState<RandomWeirdObjType>(null)
 
   // useEffect(() => {
   //   const randomObj = getParagraph(key)
@@ -42,13 +42,13 @@ export default function Note({ weathercode }) {
       const storedRandomObj = localStorage.getItem('randomWeirdObj')
       const prevWeathercode = localStorage.getItem('weathercode') 
       if (!prevWeathercode || prevWeathercode !== weathercode.toString()) {
-        const newRandomObj = getParagraph(key);
-        setRandomWeirdObj(newRandomObj);
-        localStorage.setItem('randomWeirdObj', JSON.stringify(newRandomObj));
+        const newRandomObj = getParagraph(key)
+        setRandomWeirdObj(newRandomObj)
+        localStorage.setItem('randomWeirdObj', JSON.stringify(newRandomObj))
         localStorage.setItem('weathercode', JSON.stringify(weathercode))        
       } else {
-        const storedRandomObj = localStorage.getItem('randomWeirdObj');
-        setRandomWeirdObj(JSON.parse(storedRandomObj));
+        const storedRandomObj = localStorage.getItem('randomWeirdObj')
+        setRandomWeirdObj(JSON.parse(storedRandomObj))
       }
       // if (!prevWeathercode || (prevWeathercode === weathercode && storedRandomObj)) {
       //   setRandomWeirdObj(JSON.parse(storedRandomObj));
@@ -61,24 +61,24 @@ export default function Note({ weathercode }) {
     } catch(e) {
       console.log(e)
     }
-  }, [weathercode]);
+  }, [weathercode])
 
 
   // const randomWeirdObj = getParagraph(key)
   // const randomWeirdObj = useMemo(() => getParagraph(key), [weathercode])
   
   return (
-      <div className={stylesNote.notebox}>
-        <h3 className={stylesNote.title}>Note for Today:</h3>
-        {randomWeirdObj &&
-          <div data-testid="note">
-            {randomWeirdObj.paragraphs.map((paragraph: string) => <p key={paragraph}>{paragraph}</p>)}
-            {randomWeirdObj.source &&
-              <p className={stylesNote.inspiration}>Source of inspiration:{' '}
-                <a href={randomWeirdObj.source.url}>{randomWeirdObj.source.name}</a>
-              </p>}
-          </div>
-        }
-      </div>
+    <div className={styles.notebox}>
+      <h3 className={styles.title}>Note for Today:</h3>
+      {randomWeirdObj &&
+        <div data-testid="note">
+          {randomWeirdObj.paragraphs
+            .map((paragraph: string) => <p key={paragraph}>{paragraph}</p>)}
+          {randomWeirdObj.source &&
+            <p className={styles.inspiration}>Source of inspiration:{' '}
+              <Link href={randomWeirdObj.source.url}>{randomWeirdObj.source.name}</Link>
+            </p>}
+        </div>}
+    </div>
   )
 }

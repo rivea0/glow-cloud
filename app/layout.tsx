@@ -1,10 +1,10 @@
+import '@styles/global.css'
 import type { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
 import Header from '@components/header'
 import Footer from './components/footer'
-import '@styles/global.css'
 import ThemeProvider from '@components/theme-provider'
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/react'
 
 const rubik = Rubik({ subsets: ['latin'], weight: '300' })
 
