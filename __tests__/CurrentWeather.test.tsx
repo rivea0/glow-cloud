@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { screen, render } from '@testing-library/react'
-import { weatherCodes } from '@lib/utils'
+import { weatherCodes, beaufortScale } from '@lib/utils'
 import CurrentWeather from '@components/current-weather'
 
 const weatherDataExample = {
@@ -57,7 +57,7 @@ describe('CurrentWeather', () => {
 
   it('shows wind speed', () => {
     render(<CurrentWeather weatherData={weatherDataExample} city={city} countryName={country} />)
-    
-    expect(screen.getByText(`${weatherDataExample.windspeed} mph`)).toBeInTheDocument()
+    const description = beaufortScale(weatherDataExample.windspeed).description
+    expect(screen.getByText(`${weatherDataExample.windspeed} mph | ${description}`)).toBeInTheDocument()
   })
 })
