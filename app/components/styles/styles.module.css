@@ -18,7 +18,6 @@
   text-align: center;  
 }
 
-
 @media (orientation: portrait) {
   .current, .miscItem {
     padding: 0;
