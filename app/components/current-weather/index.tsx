@@ -77,7 +77,7 @@ export default function CurrentWeather({ weatherData, city, countryName }: {
             <p>Wind speed:</p>
             <p>
               {weatherData.windspeed} mph | {' '}
-              {beaufortScale(weatherData.windspeed).description}
+              {beaufortScale(Math.round(weatherData.windspeed)).description}
             </p>
           </div>
         </div>
