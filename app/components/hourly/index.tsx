@@ -42,6 +42,7 @@ export default function Hourly({ hourlyData, currentHour }: HourlyProps) {
   return (
     <section className={styles.hourlyWrapper}>
       <h3 className={styles.hourlyTitle}>Hour by Hour</h3>
+      <h5 className={styles.hourlySecondary}><em>For what is left</em></h5>
       <HourlyDropdown days={Object.keys(days)} onChange={handleSelection} />
       {
         days[selectedDay].map((hour: string) => {
