@@ -6,17 +6,6 @@ import Hourly from './components/hourly'
 import Note from './components/note'
 import SunDisplay from './components/sun-display'
 
-async function getLocationData(ip: string) {
-  const res = await fetch(`https://ipapi.co/${ip}/json/`, {next: { revalidate: 3600 }})
- 
-  if (!res.ok) {
-    throw new Error('Failed to get location data')
-  }
- 
-  return res.json()
-}
-
-
 async function getWeatherData(latitude: string, longitude: string) {
   const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,cloudcover,visibility,windspeed_10m,winddirection_10m,is_day,uv_index&daily=sunrise,sunset&current_weather=true&timezone=auto&forecast_days=7`
   const res = await fetch(weatherURL, {next: { revalidate: 0 }})
@@ -29,10 +18,12 @@ async function getWeatherData(latitude: string, longitude: string) {
 }
 
 export default async function Page() {
-  const ip = headers().get('x-forwarded-for')
+  const city = headers().get('x-city')
+  const country_name = headers().get('x-country')
+  const latitude = headers().get('x-latitude')
+  const longitude = headers().get('x-longitude')
 
-  const { city, country_name, latitude, longitude } = await getLocationData(ip)
-  const { current_weather, hourly, daily } = await getWeatherData(latitude?.toString(), longitude?.toString())
+  const { current_weather, hourly, daily } = await getWeatherData(latitude, longitude)
   const currentHour = new Date(current_weather.time).getHours()
   const date = new Date(current_weather.time).toLocaleString('en-us', {month: 'long', day: 'numeric', weekday: 'long'})
   const sunriseHour = new Date(daily.sunrise[0]).toLocaleString('en-us', {hour: 'numeric', minute: 'numeric'})
