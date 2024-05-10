@@ -88,7 +88,7 @@ const weird = {
       ],
       paragraph: 'Today, possible rain. Also, possible sun.\nFor a complete list of all that’s possible, consult the great works of fact and fiction.',
       source: {
-        url: 'https://nitter.net/NightValeRadio/status/351692749696798722#m',
+        url: 'https://twitter.com/NightValeRadio/status/351692749696798722#m',
         name: '@NightValeRadio',
       },
     },
@@ -135,7 +135,7 @@ const weird = {
       ],
       paragraph: "Today, you'll see clouds. Later, maybe, sun.\nEven later, drifting ash and the accumulation of time.\nLater still, archeologists uncovering your home.",
       source: {
-        url: 'https://nitter.net/NightValeRadio/status/322343070941196288#m',
+        url: 'https://twitter.com/NightValeRadio/status/322343070941196288#m',
         name: '@NightValeRadio',
       },
     },
@@ -175,7 +175,7 @@ const weird = {
       ],
       paragraph: 'Today, the rain starts gently, leaving puddles shaped like eyes that have seen death.',
       source: {
-        url: 'https://nitter.net/NightValeRadio/status/245153479847473153#m',
+        url: 'https://twitter.com/NightValeRadio/status/245153479847473153#m',
         name: '@NightValeRadio',
       },
     },
@@ -254,7 +254,7 @@ const weird = {
       ],
       paragraph: 'Today, the weather outside is frightened.',
       source: {
-        url: 'https://nitter.net/NightValeRadio/status/559833587168845827#m',
+        url: 'https://twitter.com/NightValeRadio/status/559833587168845827#m',
         name: '@NightValeRadio',
       },
     },
@@ -307,7 +307,7 @@ const weird = {
       ],
       paragraph: "Today, we'll be experiencing cosmic indifference with a chance of sublime reprimand overnight.",
       source: {
-        url: 'https://nitter.net/NightValeRadio/status/245957666399203329#m',
+        url: 'https://twitter.com/NightValeRadio/status/245957666399203329#m',
         name: '@NightValeRadio',
       },
     },
@@ -473,7 +473,7 @@ const weird = {
       ],
       paragraph: 'Today, the earth circles the sun.\nThe moon circles the earth.\nDarkness circles all light.\nAnxiety circles your calm.\nNon-being circles your being.',
       source: {
-        url: 'https://nitter.net/NightValeRadio/status/359753842704908288#m',
+        url: 'https://twitter.com/NightValeRadio/status/359753842704908288#m',
         name: '@NightValeRadio',
       },
     },
