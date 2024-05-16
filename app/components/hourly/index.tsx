@@ -6,8 +6,7 @@ import { beaufortScale, weatherCodes } from '../../lib/utils'
 import HourlyDropdown from '@components/hourly-dropdown'
 import styles from './hourly.module.css'
 
-type HourlyProps = {
-  hourlyData: {
+type HourlyDataType = {
     time: string[],
     temperature_2m: number[],
     relativehumidity_2m: number[],
@@ -18,11 +17,12 @@ type HourlyProps = {
     winddirection_10m: number[],
     is_day: (0 | 1)[],
     uv_index: number[]
-  },
-  currentHour: number
 }
 
-export default function Hourly({ hourlyData, currentHour }: HourlyProps) {
+export default function Hourly({ hourlyData, currentHour }: {
+  hourlyData: HourlyDataType,
+  currentHour: number
+}) {
   let today = new Date(hourlyData.time[0])
   const todayName = today.toLocaleString('en-us', { weekday: 'long' })
   const [selectedDay, setSelectedDay] = useState(todayName)
@@ -73,7 +73,11 @@ export default function Hourly({ hourlyData, currentHour }: HourlyProps) {
   )
 }
 
-export function HourlyItem({ hourlyData, index, hour }) {
+export function HourlyItem({ hourlyData, index, hour }: {
+  hourlyData: HourlyDataType,
+  index: number,
+  hour: string
+}) {
   const weatherDescription = `${weatherCodes[
     hourlyData.weathercode[index]
   ].description[0].toUpperCase()}${weatherCodes[
@@ -90,8 +94,9 @@ export function HourlyItem({ hourlyData, index, hour }) {
   const visibility = hourlyData.visibility[index] / 1000 // To convert meters to kilometers
   const uv_index = hourlyData.uv_index[index]
   
+  console.log(hour)
   return (
-    <div className={styles.hourlyItemBox} id={index} data-testid="hourlyItem">
+    <div className={styles.hourlyItemBox} id={`${index}`} data-testid="hourlyItem">
       <h2 className={styles.hourlyItemHour}>{hour}</h2>
       <div className={styles.hourlyItemContainer}>
         <Image
