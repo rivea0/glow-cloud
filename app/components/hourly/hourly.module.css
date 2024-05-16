@@ -60,14 +60,61 @@
   margin-bottom: 1rem;
 }
 
+.dropdownDiv {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.jumpBackDiv {
+  position: sticky;
+  bottom: 2.5rem;
+  margin-left: 64rem;
+  overflow: hidden;
+}
+
+.jumpBackDiv > button {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  background-color: var(--currentboxbg);
+  border: 1px solid transparent;
+}
+.jumpBackDiv > button:hover {
+  border: 1px solid var(--purple-secondary);
+}
+
+
+.jumpBackDiv > button > svg {
+  width: 24px;
+}
+
 @media screen and (min-width: 1000px) {
   .hourly {
     padding: 0 450px;
+  }
+  .dropdownDiv {
+    gap: 2rem;
   }
 }
 
 @media (orientation: portrait) {
   .hourly, .miscItem {
     padding: 0;
+  }
+
+  .jumpBackDiv {
+    margin-left: 0;
+    float: right;
+    bottom: 0;
+  }
+
+  .dropdownDiv {
+    gap: 1rem;
   }
 }
