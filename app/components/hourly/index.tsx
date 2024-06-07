@@ -44,6 +44,8 @@ export default function Hourly({
       return { hourIndex, hourStr }
     }
   )
+  console.log(hours)
+
   const hourStrs = hours.map((h) => h.hourStr)
   const hoursLeftForToday = hours.filter((h) => currentHour <= h.hourIndex)
   const todayName = today.toLocaleString('en-us', { weekday: 'long' })
@@ -133,7 +135,7 @@ export default function Hourly({
               >
                 <HourlyItem
                   hourlyData={hourlyData}
-                  index={h.hourIndex}
+                  index={h.hourIndex + Object.keys(days).indexOf(selectedDay) * 24}
                   hour={h.hourStr}
                 />
               </div>
