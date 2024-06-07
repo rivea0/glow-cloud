@@ -15,3 +15,8 @@
   align-items: center;
 }
 
+.resetBtn {
+  padding: 4px 8px;
+  color: var(--fg);
+  background-color: var(--currentboxbg);
+}

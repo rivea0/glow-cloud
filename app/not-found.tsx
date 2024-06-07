@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import GoBackButton from '@components/go-back-button'
-import styles from '@styles/not-found.module.css'
+import styles from '@styles/error.module.css'
 
 export default function NotFound() {
   return (
