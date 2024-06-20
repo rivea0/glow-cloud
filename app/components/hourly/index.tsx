@@ -44,7 +44,6 @@ export default function Hourly({
       return { hourIndex, hourStr }
     }
   )
-  console.log(hours)
 
   const hourStrs = hours.map((h) => h.hourStr)
   const hoursLeftForToday = hours.filter((h) => currentHour <= h.hourIndex)
