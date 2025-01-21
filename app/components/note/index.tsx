@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import getParagraph from '@lib/getParagraph'
 import styles from './note.module.css'
+import type { RandomWeirdObjType } from '@lib/types'
 
 export default function Note({ weathercode }) {
   let key: string
@@ -18,16 +19,6 @@ export default function Note({ weathercode }) {
   } else {
     key = 'misc'
   }
-
-  type RandomWeirdObjType = {
-    id: number,
-    paragraphs: string[],
-    paragraph: string,
-    source?: {
-      url: string,
-      name: string,
-    },
-  } | null
 
   const [randomWeirdObj, setRandomWeirdObj] = useState<RandomWeirdObjType>(null)
 

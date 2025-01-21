@@ -2,18 +2,10 @@ import { beaufortScale, weatherCodes } from '@lib/utils'
 import Image from 'next/image'
 import styles from '@components/styles/styles.module.css'
 import stylesCurrent from './current.module.css'
-
-type CurrentWeather = {
-  temperature: number,
-  windspeed: number,
-  winddirection: number,
-  weathercode: number,
-  is_day: 1 | 0,
-  time: string
-}
+import type { ICurrentWeather } from '@lib/types'
 
 export default function CurrentWeather({ weatherData, city, countryName }: { 
-  weatherData: CurrentWeather,
+  weatherData: ICurrentWeather,
   city: string,
   countryName: string
 }) {

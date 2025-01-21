@@ -5,25 +5,13 @@ import Image from 'next/image'
 import { beaufortScale, weatherCodes } from '../../lib/utils'
 import { DaysDropdown, HoursDropdown } from '@components/hourly-dropdown'
 import styles from './hourly.module.css'
-
-type HourlyDataType = {
-  time: string[]
-  temperature_2m: number[]
-  relativehumidity_2m: number[]
-  weathercode: number[]
-  cloudcover: number[]
-  visibility: number[]
-  windspeed_10m: number[]
-  winddirection_10m: number[]
-  is_day: (0 | 1)[]
-  uv_index: number[]
-}
+import type { IHourlyData } from '@lib/types'
 
 export default function Hourly({
   hourlyData,
   currentHour,
 }: {
-  hourlyData: HourlyDataType
+  hourlyData: IHourlyData
   currentHour: number
 }) {
   let today = new Date(hourlyData.time[0])
@@ -176,7 +164,7 @@ export function HourlyItem({
   index,
   hour,
 }: {
-  hourlyData: HourlyDataType
+  hourlyData: IHourlyData
   index: number
   hour: string
 }) {
