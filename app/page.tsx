@@ -55,14 +55,16 @@ export default async function Page() {
     lon = longitude;
   } catch (error) {
     return (
-      <main className={styles.container}>
-        <Suspense fallback={<Loading />}>
-          <p>
-            Can't get your location data. In the meantime, why don't try you
-            refreshing the page and see if that works?
-          </p>
-        </Suspense>
-      </main>
+      <div className={styles.wrapper}>
+        <main className={styles.container}>
+          <Suspense fallback={<Loading />}>
+            <p>
+              Can't get your location data. In the meantime, why don't try you
+              refreshing the page and see if that works?
+            </p>
+          </Suspense>
+        </main>
+      </div>
     );
   }
 
@@ -108,7 +110,7 @@ export default async function Page() {
     }
   } catch (error) {
     return (
-      <>
+      <div className={styles.wrapper}>
         <main className={styles.container}>
           <Suspense fallback={<Loading />}>
             <p>
@@ -117,7 +119,7 @@ export default async function Page() {
             </p>
           </Suspense>
         </main>
-      </>
+      </div>
     );
   }
 }
