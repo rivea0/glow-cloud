@@ -1,7 +1,6 @@
-import styles from './footer.module.css'
-import FooterIcon from '@components/footer-icon'
-import { Mail, GitHub, Link } from '@components/icons'
-
+import styles from './footer.module.css';
+import FooterIcon from '@components/footer-icon';
+import { Mail, GitHub, Link } from '@components/icons';
 
 export default function Footer() {
   return (
@@ -21,14 +20,8 @@ export default function Footer() {
         />
       </div>
       <div className="end" data-testid="footer-end">
-        <p className="">
-          &copy;
-          {' '}
-          {new Date().getFullYear()}
-          {' '}
-          | Eda Eren
-        </p>
+        <p className="">&copy; {new Date().getFullYear()} | Eda Eren</p>
       </div>
-    </footer>    
-  )
+    </footer>
+  );
 }

@@ -1,4 +1,4 @@
-import styles from './logo.module.css'
+import styles from './logo.module.css';
 
 export default function Logo() {
   return (
@@ -6,5 +6,5 @@ export default function Logo() {
       <h1>glow cloud*</h1>
       <h4>*all hail</h4>
     </div>
-  )
+  );
 }

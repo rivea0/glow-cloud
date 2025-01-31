@@ -1,13 +1,13 @@
-import styles from './hourly-dropdown.module.css'
+import styles from './hourly-dropdown.module.css';
 
 export function HoursDropdown({
   hours,
   onChange,
   selectedHour,
 }: {
-  hours: string[]
-  onChange: (e: { target: { value: string } }) => void
-  selectedHour: string
+  hours: string[];
+  onChange: (e: { target: { value: string } }) => void;
+  selectedHour: string;
 }) {
   return (
     <div className={styles.dropdownItem}>
@@ -26,15 +26,15 @@ export function HoursDropdown({
         ))}
       </select>
     </div>
-  )
+  );
 }
 
 export function DaysDropdown({
   days,
   onChange,
 }: {
-  days: string[]
-  onChange: (e: { target: { value: string } }) => void
+  days: string[];
+  onChange: (e: { target: { value: string } }) => void;
 }) {
   return (
     <div>
@@ -52,5 +52,5 @@ export function DaysDropdown({
         ))}
       </select>
     </div>
-  )
+  );
 }

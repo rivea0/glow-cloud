@@ -37,7 +37,7 @@ export interface IWeatherData {
     winddirection: number;
     is_day: 0 | 1;
     weathercode: number;
-  }
+  };
   hourly: {
     time: string[];
     temperature_2m: number[];
@@ -49,12 +49,12 @@ export interface IWeatherData {
     winddirection_10m: number[];
     is_day: (0 | 1)[];
     uv_index: number[];
-  }
+  };
   daily: {
     time: [string, string, string, string, string, string, string];
     sunrise: [string, string, string, string, string, string, string];
     sunset: [string, string, string, string, string, string, string];
-  }
+  };
 }
 
 export type RandomWeirdObjType = {
@@ -62,7 +62,7 @@ export type RandomWeirdObjType = {
   paragraphs: string[];
   paragraph: string;
   source?: {
-    url: string,
-    name: string
-  }
+    url: string;
+    name: string;
+  };
 } | null;

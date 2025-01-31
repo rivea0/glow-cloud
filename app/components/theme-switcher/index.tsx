@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import styles from './theme-switcher.module.css'
-import { Moon, Sun } from '@components/icons'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import styles from './theme-switcher.module.css';
+import { Moon, Sun } from '@components/icons';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
-export default function ThemeSwitcher ({
+export default function ThemeSwitcher({
   iconSize = 24,
   strokeWidth,
 }: {
-  iconSize?: number
-  strokeWidth?: number
+  iconSize?: number;
+  strokeWidth?: number;
 }) {
-  const { theme: activeTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { theme: activeTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -35,5 +35,5 @@ export default function ThemeSwitcher ({
         </button>
       )}
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import styles from '@components/styles/styles.module.css'
-import stylesSun from './sun.module.css'
+import Image from 'next/image';
+import styles from '@components/styles/styles.module.css';
+import stylesSun from './sun.module.css';
 
-export default function SunDisplay({date, sunrise, sunset}) {
+export default function SunDisplay({ date, sunrise, sunset }) {
   return (
     <>
       <h3 className={stylesSun.header}>What About the Sun?</h3>
@@ -16,9 +16,9 @@ export default function SunDisplay({date, sunrise, sunset}) {
             height={100}
           />
           <div className={stylesSun.sun} data-testid="sunrise">
-            <p>The Sun rises at {' '}
-              <span className={stylesSun.time}>{sunrise}</span>, {' '}
-              oblivious to its significance on our tiny planet.
+            <p>
+              The Sun rises at <span className={stylesSun.time}>{sunrise}</span>
+              , oblivious to its significance on our tiny planet.
             </p>
           </div>
         </div>
@@ -30,13 +30,14 @@ export default function SunDisplay({date, sunrise, sunset}) {
             height={100}
           />
           <div className={stylesSun.sun}>
-            <p>It sets at {' '}
-              <span className={stylesSun.time}>{sunset}</span>, seems frightened.
+            <p>
+              It sets at <span className={stylesSun.time}>{sunset}</span>, seems
+              frightened.
             </p>
             <p>Be a shame if anything happened to it.</p>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }

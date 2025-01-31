@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import styles from '@styles/loading.module.css'
+import Image from 'next/image';
+import styles from '@styles/loading.module.css';
 
 export default function Loading() {
   return (
@@ -9,8 +9,7 @@ export default function Loading() {
         alt="Loading..."
         width={75}
         height={75}
-      >
-      </Image>
+      ></Image>
     </div>
-  )
+  );
 }

@@ -16,10 +16,10 @@ const withIcon = (icon: string) => {
         dangerouslySetInnerHTML={{ __html: icon }}
         aria-hidden="true"
       />
-    )
-  }
+    );
+  };
 
-  return Icon
-}
+  return Icon;
+};
 
-export default withIcon
+export default withIcon;

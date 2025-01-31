@@ -1,80 +1,80 @@
-'use client'
+'use client';
 
-import { useState, createRef, useRef } from 'react'
-import Image from 'next/image'
-import { beaufortScale, weatherCodes } from '../../lib/utils'
-import { DaysDropdown, HoursDropdown } from '@components/hourly-dropdown'
-import styles from './hourly.module.css'
-import type { IHourlyData } from '@lib/types'
+import { useState, createRef, useRef } from 'react';
+import Image from 'next/image';
+import { beaufortScale, weatherCodes } from '../../lib/utils';
+import { DaysDropdown, HoursDropdown } from '@components/hourly-dropdown';
+import styles from './hourly.module.css';
+import type { IHourlyData } from '@lib/types';
 
 export default function Hourly({
   hourlyData,
   currentHour,
 }: {
-  hourlyData: IHourlyData
-  currentHour: number
+  hourlyData: IHourlyData;
+  currentHour: number;
 }) {
-  let today = new Date(hourlyData.time[0])
-  let days = {}
+  let today = new Date(hourlyData.time[0]);
+  let days = {};
   for (let i = 0; i < hourlyData.time.length; i += 24) {
     days[
       new Date(hourlyData.time[i]).toLocaleString('en-us', { weekday: 'long' })
-    ] = hourlyData.time.slice(i, i + 24)
+    ] = hourlyData.time.slice(i, i + 24);
   }
 
   let hours: { hourIndex: number; hourStr: string }[] = Array.from(
     { length: 24 },
     (_, i) => {
-      let hourIndex = i
+      let hourIndex = i;
       let hourStr =
-        i === 0 ? '12 AM' : `${i !== 12 ? i % 12 : 12} ${i < 12 ? 'AM' : 'PM'}`
+        i === 0 ? '12 AM' : `${i !== 12 ? i % 12 : 12} ${i < 12 ? 'AM' : 'PM'}`;
 
-      return { hourIndex, hourStr }
+      return { hourIndex, hourStr };
     }
-  )
+  );
 
-  const hourStrs = hours.map((h) => h.hourStr)
-  const hoursLeftForToday = hours.filter((h) => currentHour <= h.hourIndex)
-  const todayName = today.toLocaleString('en-us', { weekday: 'long' })
+  const hourStrs = hours.map((h) => h.hourStr);
+  const hoursLeftForToday = hours.filter((h) => currentHour <= h.hourIndex);
+  const todayName = today.toLocaleString('en-us', { weekday: 'long' });
 
-  const [selectedDay, setSelectedDay] = useState(todayName)
+  const [selectedDay, setSelectedDay] = useState(todayName);
   const [selectedHour, setSelectedHour] = useState<string>(
     hoursLeftForToday[0].hourStr
-  )
-  const [showJumpBackToHoursBtn, setShowJumpBackToHoursBtn] = useState(false)
-  const hoursRef = useRef(null)
+  );
+  const [showJumpBackToHoursBtn, setShowJumpBackToHoursBtn] = useState(false);
+  const hoursRef = useRef(null);
 
   const hourlyItemRefs =
     selectedDay === todayName
       ? hoursLeftForToday.reduce((acc, value) => {
-          acc[value.hourIndex] = createRef()
-          return acc
+          acc[value.hourIndex] = createRef();
+          return acc;
         }, {})
       : hours.reduce((acc, value) => {
-          acc[value.hourIndex] = createRef()
-          return acc
-        }, {})
+          acc[value.hourIndex] = createRef();
+          return acc;
+        }, {});
 
   function handleDaySelection(e: { target: { value: string } }) {
-    setSelectedDay(e.target.value)
+    setSelectedDay(e.target.value);
 
     // If the selected day is not today, reset the HoursDropdown to start from 12 AM
     if (e.target.value !== todayName) {
-      setSelectedHour(hourStrs[0])
+      setSelectedHour(hourStrs[0]);
     }
   }
 
   function handleHourSelection(e: { target: { value: string } }) {
     setSelectedHour(() => {
-      const refIdx = hourStrs.indexOf(e.target.value)
+      const refIdx = hourStrs.indexOf(e.target.value);
       hourlyItemRefs[refIdx].current.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
-      })
-      return e.target.value
-    })
+      });
+      return e.target.value;
+    });
 
-    setShowJumpBackToHoursBtn(true)
+    setShowJumpBackToHoursBtn(true);
   }
 
   return (
@@ -111,7 +111,7 @@ export default function Hourly({
                   hour={h.hourStr}
                 />
               </div>
-            )
+            );
           })
         : hours.map((h) => {
             return (
@@ -122,11 +122,13 @@ export default function Hourly({
               >
                 <HourlyItem
                   hourlyData={hourlyData}
-                  index={h.hourIndex + Object.keys(days).indexOf(selectedDay) * 24}
+                  index={
+                    h.hourIndex + Object.keys(days).indexOf(selectedDay) * 24
+                  }
                   hour={h.hourStr}
                 />
               </div>
-            )
+            );
           })}
       {showJumpBackToHoursBtn && (
         <div className={styles.jumpBackDiv}>
@@ -135,7 +137,7 @@ export default function Hourly({
               hoursRef.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start',
-              })
+              });
             }}
           >
             <svg
@@ -156,7 +158,7 @@ export default function Hourly({
         </div>
       )}
     </section>
-  )
+  );
 }
 
 export function HourlyItem({
@@ -164,25 +166,25 @@ export function HourlyItem({
   index,
   hour,
 }: {
-  hourlyData: IHourlyData
-  index: number
-  hour: string
+  hourlyData: IHourlyData;
+  index: number;
+  hour: string;
 }) {
   const weatherDescription = `${weatherCodes[
     hourlyData.weathercode[index]
   ].description[0].toUpperCase()}${weatherCodes[
     hourlyData.weathercode[index]
-  ].description.slice(1)}`
+  ].description.slice(1)}`;
   const iconName = hourlyData.is_day[index]
     ? weatherCodes[hourlyData.weathercode[index]].iconNameDay
-    : weatherCodes[hourlyData.weathercode[index]].iconNameNight
-  const temperature = Math.round(hourlyData.temperature_2m[index])
-  const humidity = hourlyData.relativehumidity_2m[index]
-  const cloudcover = hourlyData.cloudcover[index]
-  const winddirection = hourlyData.winddirection_10m[index]
-  const windspeed = Math.round(hourlyData.windspeed_10m[index])
-  const visibility = hourlyData.visibility[index] / 1000 // To convert meters to kilometers
-  const uv_index = hourlyData.uv_index[index]
+    : weatherCodes[hourlyData.weathercode[index]].iconNameNight;
+  const temperature = Math.round(hourlyData.temperature_2m[index]);
+  const humidity = hourlyData.relativehumidity_2m[index];
+  const cloudcover = hourlyData.cloudcover[index];
+  const winddirection = hourlyData.winddirection_10m[index];
+  const windspeed = Math.round(hourlyData.windspeed_10m[index]);
+  const visibility = hourlyData.visibility[index] / 1000; // To convert meters to kilometers
+  const uv_index = hourlyData.uv_index[index];
 
   return (
     <div
@@ -280,5 +282,5 @@ export function HourlyItem({
         </div>
       </div>
     </div>
-  )
+  );
 }
