@@ -5,6 +5,7 @@ import CurrentWeather from '@components/current-weather';
 import Hourly from './components/hourly';
 import Note from './components/note';
 import SunDisplay from './components/sun-display';
+import styles from '@about/about.module.css';
 import type { ILocationData, IWeatherData } from '@lib/types';
 
 async function getLocationData(ip: string): Promise<ILocationData> {
@@ -54,16 +55,14 @@ export default async function Page() {
     lon = longitude;
   } catch (error) {
     return (
-      <>
-        <main>
-          <Suspense fallback={<Loading />}>
-            <p>
-              Can't get your location data. In the meantime, why don't try you
-              refreshing the page and see if that works?
-            </p>
-          </Suspense>
-        </main>
-      </>
+      <main className={styles.container}>
+        <Suspense fallback={<Loading />}>
+          <p>
+            Can't get your location data. In the meantime, why don't try you
+            refreshing the page and see if that works?
+          </p>
+        </Suspense>
+      </main>
     );
   }
 
@@ -93,30 +92,24 @@ export default async function Page() {
         });
       }
       return (
-        <>
-          <main>
-            <Suspense fallback={<Loading />}>
-              <CurrentWeather
-                weatherData={current_weather}
-                city={cityName}
-                countryName={countryName}
-              />
-              <Hourly hourlyData={hourly} currentHour={currentHour} />
-              <SunDisplay
-                date={date}
-                sunrise={sunriseHour}
-                sunset={sunsetHour}
-              />
-              <Note weathercode={current_weather.weathercode} />
-            </Suspense>
-          </main>
-        </>
+        <main>
+          <Suspense fallback={<Loading />}>
+            <CurrentWeather
+              weatherData={current_weather}
+              city={cityName}
+              countryName={countryName}
+            />
+            <Hourly hourlyData={hourly} currentHour={currentHour} />
+            <SunDisplay date={date} sunrise={sunriseHour} sunset={sunsetHour} />
+            <Note weathercode={current_weather.weathercode} />
+          </Suspense>
+        </main>
       );
     }
   } catch (error) {
     return (
       <>
-        <main>
+        <main className={styles.container}>
           <Suspense fallback={<Loading />}>
             <p>
               Can't get your weather data. In the meantime, why don't try you
