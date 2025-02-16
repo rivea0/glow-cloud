@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { Suspense } from 'react';
 import Loading from '@loading';
 import CurrentWeather from '@components/current-weather';
@@ -8,8 +7,10 @@ import SunDisplay from './components/sun-display';
 import styles from '@about/about.module.css';
 import type { ILocationData, IWeatherData } from '@lib/types';
 
-async function getLocationData(ip: string): Promise<ILocationData> {
-  const res = await fetch(`https://ipapi.co/${ip}/json/`, {
+async function getLocationData(): Promise<ILocationData> {
+  // IMPORTANT: Testing locally, add `http://localhost:3000` (or <your-domain>) before the route name
+  // Otherwise, it will give the error: Failed to parse URL from /api/header/
+  const res = await fetch('/api/header/', {
     next: { revalidate: 3600 },
   });
 
@@ -35,7 +36,6 @@ async function getWeatherData(
 }
 
 export default async function Page() {
-  const ip = headers().get('x-forwarded-for');
   let cityName = '';
   let countryName = '';
   let lat = null;
@@ -46,11 +46,9 @@ export default async function Page() {
   let sunsetHour = null;
 
   try {
-    const { city, country_name, latitude, longitude } = await getLocationData(
-      ip
-    );
+    const { city, country, latitude, longitude } = await getLocationData();
     cityName = city;
-    countryName = country_name;
+    countryName = country;
     lat = latitude;
     lon = longitude;
   } catch (error) {
