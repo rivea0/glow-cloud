@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import { Suspense } from 'react';
 import Loading from '@loading';
 import CurrentWeather from '@components/current-weather';
@@ -5,21 +6,7 @@ import Hourly from './components/hourly';
 import Note from './components/note';
 import SunDisplay from './components/sun-display';
 import styles from '@about/about.module.css';
-import type { ILocationData, IWeatherData } from '@lib/types';
-
-async function getLocationData(): Promise<ILocationData> {
-  // IMPORTANT: Testing locally, add `http://localhost:3000` (or <your-domain>) before the route name
-  // Otherwise, it will give the error: Failed to parse URL from /api/header/
-  const res = await fetch('/api/header/', {
-    next: { revalidate: 3600 },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to get location data');
-  }
-
-  return res.json();
-}
+import type { IWeatherData } from '@lib/types';
 
 async function getWeatherData(
   latitude: string,
@@ -36,6 +23,7 @@ async function getWeatherData(
 }
 
 export default async function Page() {
+  const headersList = headers();
   let cityName = '';
   let countryName = '';
   let lat = null;
@@ -46,24 +34,36 @@ export default async function Page() {
   let sunsetHour = null;
 
   try {
-    const { city, country, latitude, longitude } = await getLocationData();
+    const city = headersList.get('x-vercel-ip-city') ?? undefined;
+    const country = headersList.get('x-vercel-ip-country') ?? undefined;
+    const latitude = headersList.get('x-vercel-ip-latitude') ?? undefined;
+    const longitude = headersList.get('x-vercel-ip-longitude') ?? undefined;
+    // ****** Testing locally: ******
+    // const city = headersList.get('x-vercel-ip-city') ?? 'Houston';
+    // const country = headersList.get('x-vercel-ip-country') ?? 'US';
+    // const latitude = headersList.get('x-vercel-ip-latitude') ?? '29.8131';
+    // const longitude = headersList.get('x-vercel-ip-longitude') ?? '-95.3098';
     cityName = city;
     countryName = country;
     lat = latitude;
     lon = longitude;
+    if (!cityName || !countryName || !lat || !lon) {
+      return (
+        <div className={styles.wrapper}>
+          <main className={styles.container}>
+            <Suspense fallback={<Loading />}>
+              <p>
+                Can't get your location data. In the meantime, why don't try you
+                refreshing the page and see if that works?
+              </p>
+            </Suspense>
+          </main>
+        </div>
+      );
+    }
+
   } catch (error) {
-    return (
-      <div className={styles.wrapper}>
-        <main className={styles.container}>
-          <Suspense fallback={<Loading />}>
-            <p>
-              Can't get your location data. In the meantime, why don't try you
-              refreshing the page and see if that works?
-            </p>
-          </Suspense>
-        </main>
-      </div>
-    );
+    console.log(error.message);
   }
 
   try {
