@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { screen, render } from '@testing-library/react'
-import { weatherCodes, beaufortScale } from '@lib/utils'
+import { beaufortScale } from '@lib/utils'
+import { weatherCodes } from '@lib/constants'
 import CurrentWeather from '@components/current-weather'
 
 const weatherDataExample = {

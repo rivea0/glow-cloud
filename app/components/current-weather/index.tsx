@@ -1,4 +1,5 @@
-import { beaufortScale, weatherCodes } from '@lib/utils';
+import { beaufortScale } from '@lib/utils';
+import { weatherCodes } from '@lib/constants';
 import Image from 'next/image';
 import styles from '@components/styles/styles.module.css';
 import stylesCurrent from './current.module.css';

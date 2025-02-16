@@ -7,6 +7,7 @@ import Note from './components/note';
 import SunDisplay from './components/sun-display';
 import styles from '@about/about.module.css';
 import type { IWeatherData } from '@lib/types';
+import { getLocationData } from '@lib/utils';
 
 async function getWeatherData(
   latitude: string,
@@ -34,20 +35,10 @@ export default async function Page() {
   let sunsetHour = null;
 
   try {
-    const city = headersList.get('x-vercel-ip-city') ?? undefined;
-    const country = headersList.get('x-vercel-ip-country') ?? undefined;
-    const latitude = headersList.get('x-vercel-ip-latitude') ?? undefined;
-    const longitude = headersList.get('x-vercel-ip-longitude') ?? undefined;
-    // ****** Testing locally: ******
-    // const city = headersList.get('x-vercel-ip-city') ?? 'Houston';
-    // const country = headersList.get('x-vercel-ip-country') ?? 'US';
-    // const latitude = headersList.get('x-vercel-ip-latitude') ?? '29.8131';
-    // const longitude = headersList.get('x-vercel-ip-longitude') ?? '-95.3098';
-    cityName = city;
-    countryName = country;
-    lat = latitude;
-    lon = longitude;
-    if (!cityName || !countryName || !lat || !lon) {
+    const { city, country, latitude, longitude } = await getLocationData(
+      headersList
+    );
+    if (!city || !country || !latitude || !longitude) {
       return (
         <div className={styles.wrapper}>
           <main className={styles.container}>
@@ -62,6 +53,10 @@ export default async function Page() {
       );
     }
 
+    cityName = city;
+    countryName = country;
+    lat = latitude;
+    lon = longitude;
   } catch (error) {
     console.log(error.message);
   }

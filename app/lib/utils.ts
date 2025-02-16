@@ -1,145 +1,5 @@
-export const weatherCodes = {
-  0: {
-    description: 'clear sky',
-    iconNameDay: 'clear-day',
-    iconNameNight: 'clear-night',
-  },
-  1: {
-    description: 'mainly clear',
-    iconNameDay: 'clear-day',
-    iconNameNight: 'clear-night',
-  },
-  2: {
-    description: 'partly cloudy',
-    iconNameDay: 'partly-cloudy-day',
-    iconNameNight: 'partly-cloudy-night',
-  },
-  3: {
-    description: 'clouds',
-    iconNameDay: 'overcast-day',
-    iconNameNight: 'overcast-night',
-  },
-  45: {
-    description: 'fog',
-    iconNameDay: 'fog-day',
-    iconNameNight: 'fog-night',
-  },
-  48: {
-    description: 'depositing rime fog',
-    iconNameDay: 'extreme-day-fog',
-    iconNameNight: 'extreme-night-fog',
-  },
-  51: {
-    description: 'light drizzle',
-    iconNameDay: 'drizzle',
-    iconNameNight: 'drizzle',
-  },
-  53: {
-    description: 'moderate drizzle',
-    iconNameDay: 'drizzle',
-    iconNameNight: 'drizzle',
-  },
-  55: {
-    description: 'dense intensity drizzle',
-    iconNameDay: 'drizzle',
-    iconNameNight: 'drizzle',
-  },
-  56: {
-    description: 'light freezing drizzle',
-    iconNameDay: 'drizzle',
-    iconNameNight: 'drizzle',
-  },
-  57: {
-    description: 'dense intensity freezing drizzle',
-    iconNameDay: 'drizzle',
-    iconNameNight: 'drizzle',
-  },
-  61: {
-    description: 'slight rain',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  63: {
-    description: 'moderate rain',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  65: {
-    description: 'heavy intensity rain',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  66: {
-    description: 'light freezing rain',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  67: {
-    description: 'heavy intensity freezing rain',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  71: {
-    description: 'slight snow fall',
-    iconNameDay: 'snow',
-    iconNameNight: 'snow',
-  },
-  73: {
-    description: 'moderate snow fall',
-    iconNameDay: 'snow',
-    iconNameNight: 'snow',
-  },
-  75: {
-    description: 'violent snow fall',
-    iconNameDay: 'snow',
-    iconNameNight: 'snow',
-  },
-  77: {
-    description: 'snow grains',
-    iconNameDay: 'snow',
-    iconNameNight: 'snow',
-  },
-  80: {
-    description: 'slight rain showers',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  81: {
-    description: 'moderate rain showers',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  82: {
-    description: 'violent rain showers',
-    iconNameDay: 'rain',
-    iconNameNight: 'rain',
-  },
-  85: {
-    description: 'slight snow showers',
-    iconNameDay: 'snow',
-    iconNameNight: 'snow',
-  },
-  86: {
-    description: 'heavy snow showers',
-    iconNameDay: 'snow',
-    iconNameNight: 'snow',
-  },
-  95: {
-    description: 'thunderstorm',
-    iconNameDay: 'thunderstorms-day',
-    iconNameNight: 'thunderstorms-night',
-  },
-  96: {
-    description: 'thunderstorm with slight hail',
-    iconNameDay: 'thunderstorms-day-rain',
-    iconNameNight: 'thunderstorms-night-rain',
-  },
-  99: {
-    description: 'thunderstorm with heavy hail',
-    iconNameDay: 'thunderstorms-day-rain',
-    iconNameNight: 'thunderstorms-night-rain',
-  },
-};
+import { countryCodeMap } from './constants';
+import { IHeadersList } from './types';
 
 export function beaufortScale(mph: number) {
   if (mph === 0) {
@@ -208,6 +68,31 @@ export function beaufortScale(mph: number) {
       scale: 12,
     };
   }
+}
+
+export function getCountryNameFromCountryCode(
+  countryCode: keyof typeof countryCodeMap
+) {
+  return countryCodeMap[countryCode];
+}
+
+export async function getLocationData(headersList: IHeadersList) {
+  const city = headersList.get('x-vercel-ip-city') ?? undefined;
+  const countryCode = headersList.get('x-vercel-ip-country') ?? undefined;
+  const latitude = headersList.get('x-vercel-ip-latitude') ?? undefined;
+  const longitude = headersList.get('x-vercel-ip-longitude') ?? undefined;
+
+  // ********* Testing locally: *********
+  // const city = headersList.get('x-vercel-ip-city') ?? 'Houston';
+  // const countryCode = headersList.get('x-vercel-ip-country') ?? 'US';
+  // const latitude = headersList.get('x-vercel-ip-latitude') ?? '29.8131';
+  // const longitude = headersList.get('x-vercel-ip-longitude') ?? '-95.3098';
+
+  let country = countryCode
+    ? getCountryNameFromCountryCode(countryCode as keyof typeof countryCodeMap)
+    : '';
+
+  return { city, country, latitude, longitude };
 }
 
 export function getHourlyExampleData() {

@@ -2,7 +2,8 @@
 
 import { useState, createRef, useRef } from 'react';
 import Image from 'next/image';
-import { beaufortScale, weatherCodes } from '../../lib/utils';
+import { beaufortScale } from '../../lib/utils';
+import { weatherCodes } from '@lib/constants';
 import { DaysDropdown, HoursDropdown } from '@components/hourly-dropdown';
 import styles from './hourly.module.css';
 import type { IHourlyData } from '@lib/types';

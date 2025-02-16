@@ -66,3 +66,13 @@ export type RandomWeirdObjType = {
     name: string;
   };
 } | null;
+
+type GeolocationDataVercelHeaders =
+  | 'x-vercel-ip-city'
+  | 'x-vercel-ip-country'
+  | 'x-vercel-ip-latitude'
+  | 'x-vercel-ip-longitude';
+
+export interface IHeadersList {
+  get: (vercelHeader: GeolocationDataVercelHeaders) => string | undefined;
+}
