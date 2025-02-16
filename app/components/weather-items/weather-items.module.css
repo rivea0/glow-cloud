@@ -1,0 +1,14 @@
+.weatherItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 18px;
+  margin: 18px 0;
+}
+
+@media (orientation: portrait) {
+  .weatherItem {
+    padding: 0;
+  }
+}

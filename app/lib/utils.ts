@@ -1,5 +1,5 @@
-import { countryCodeMap } from './constants';
-import { IHeadersList } from './types';
+import { countryCodeMap, weatherCodes } from './constants';
+import type { IHeadersList, IHourlyData } from './types';
 
 export function beaufortScale(mph: number) {
   if (mph === 0) {
@@ -93,6 +93,32 @@ export async function getLocationData(headersList: IHeadersList) {
     : '';
 
   return { city, country, latitude, longitude };
+}
+
+export function getWeatherValues(hourlyData: IHourlyData, index: number) {
+  const temperature = Math.round(hourlyData.temperature_2m[index]);
+  const humidity = hourlyData.relativehumidity_2m[index];
+  const cloudcover = hourlyData.cloudcover[index];
+  const winddirection = hourlyData.winddirection_10m[index];
+  const windspeed = Math.round(hourlyData.windspeed_10m[index]);
+  const visibility = hourlyData.visibility[index] / 1000; // To convert meters to kilometers
+  const uv_index = hourlyData.uv_index[index];
+
+  return {
+    temperature,
+    humidity,
+    cloudcover,
+    winddirection,
+    windspeed,
+    visibility,
+    uv_index,
+  };
+}
+
+export function getWeatherDescription(code: keyof typeof weatherCodes) {
+  return `${weatherCodes[code].description[0].toUpperCase()}${weatherCodes[
+    code
+  ].description.slice(1)}`;
 }
 
 export function getHourlyExampleData() {

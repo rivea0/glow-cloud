@@ -4,18 +4,9 @@
 }
 
 .hourly {
-  text-align: center; 
   margin-top: 1rem;
   padding: 0 4rem;
-}
-
-.miscItem {
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  flex: 1; 
-  padding: 18px;
-  margin: 18px 0;
+  text-align: center;
 }
 
 .hourlyItemBox {
@@ -85,10 +76,10 @@
   background-color: var(--currentboxbg);
   border: 1px solid transparent;
 }
+
 .jumpBackDiv > button:hover {
   border: 1px solid var(--purple-secondary);
 }
-
 
 .jumpBackDiv > button > svg {
   width: 24px;
@@ -98,13 +89,14 @@
   .hourly {
     padding: 0 450px;
   }
+
   .dropdownDiv {
     gap: 2rem;
   }
 }
 
 @media (orientation: portrait) {
-  .hourly, .miscItem {
+  .hourly {
     padding: 0;
   }
 
