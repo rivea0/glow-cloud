@@ -21,7 +21,7 @@ export const weatherCodes = {
   },
   45: {
     description: 'fog',
-    iconNameDay: 'fog-day',
+    iconNameDay: 'fog',
     iconNameNight: 'fog-night',
   },
   48: {
